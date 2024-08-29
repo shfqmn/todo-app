@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: password
+      MARIADB_DATABASE: todo
+    ports:
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mariadb
+volumes:
+  db:
+    driver: local

@@ -1,0 +1,34 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_ENV=production node dist/index.js",
+    "start-win": "npm run build && set NODE_ENV=production&&node dist/index.js",
+    "build": "tsc -p . && cpx \"./src/views/**/*\" ./dist/views --clean",
+    "watch": "concurrently --kill-others \"cpx \"./src/views/**/*\" ./dist/views --clean --watch\" \"tsc -w\"",
+    "dev": "nodemon dist/index.js ",
+    "dev2": "nodemon src/index.ts",
+    "migration:generate": "typeorm-ts-node-esm migration:generate ./src/migrations/Migrations -d ./src/typeorm.ts",
+    "migration:run": "typeorm-ts-node-esm migration:run -d ./src/typeorm.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server-express": "^3.13.0",
+    "concurrently": "^8.2.2",
+    "cpx": "^1.5.0",
+    "express": "^4.18.2",
+    "mysql": "^2.18.1",
+    "nodemon": "^3.0.2",
+    "type-graphql": "^1.1.1",
+    "typeorm": "^0.3.19"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3",
+    "typescript-cp": "^0.1.9"
+  }
+}
